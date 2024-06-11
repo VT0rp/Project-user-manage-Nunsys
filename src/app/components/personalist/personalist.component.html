@@ -1,0 +1,42 @@
+<div class="container">
+  <button class="btn-outline-dark mt-lg-5" [routerLink]="'/persona/new'">Crear Usuario</button>
+  <div class="container mt-lg-5">
+    <button class="button ms-4" (click)="filtered()"><fa-icon [icon]="faFilter" class="col-6"></fa-icon></button>
+    <input type="text" placeholder="nombre" class="ms-3" [(ngModel)]="filters.nombre">
+    <input type="text" placeholder="apellidos" class="ms-3" [(ngModel)]="filters.apellidos">
+    <input type="text" placeholder="rol" class="ms-3" [(ngModel)]="filters.rol">
+    <button class="button ms-4 " (click)="limpiarFiltrado()">X</button>
+  </div>
+  <table class="table mt-lg-5">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Email</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let persona of listaPersonas">
+      <td>{{persona.id}}</td>
+      <td>{{persona.nombre}}</td>
+      <td>{{persona.apellidos}}</td>
+      <td>{{persona.email}}</td>
+      <td>{{persona.rol}}</td>
+      <td class="row acciones">
+        <button [routerLink]="'/persona/' + persona.id" class="button"><fa-icon [icon]="faSquarePen" class="col-6"></fa-icon></button>
+        <button (click)="deletePersona(persona.id)" class="button ms-4"><fa-icon [icon]="faTrashCan" class="col-6 text-danger"></fa-icon></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="container">
+    <button (click)="anterior()" class="me-4">Anterior</button>
+    <button (click)="siguiente()">Siguiente</button>
+  </div>
+</div>
+
+
+

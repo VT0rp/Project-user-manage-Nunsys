@@ -1,0 +1,28 @@
+<div class="container">
+  <h1 *ngIf="mode == 'NEW'" class="mt-4">Crear Usuario</h1>
+  <h1 *ngIf="mode == 'UPDATE'" class="mt-4">Editar Usuario</h1>
+  <form #userForm="ngForm" (ngSubmit)="personaAction(userForm)" class="mt-lg-5">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="persona.nombre" required>
+    </div>
+    <div class="mb-3">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input type="text" class="form-control" id="apellidos" name="apellidos" [(ngModel)]="persona.apellidos" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="persona.email" required>
+    </div>
+    <div class="mb-3">
+      <label for="rol" class="form-label">Rol</label>
+      <select class="form-select" id="rol" name="rol" [(ngModel)]="persona.rol" required>
+        <option value="Administrador">Administrador</option>
+        <option value="Contributor">Contributor</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid" *ngIf="mode == 'NEW'">Crear Usuario</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid" *ngIf="mode == 'UPDATE'">Actualizar Usuario</button>
+    <button type="button" class="btn btn-secondary ms-3" (click)="cancel()">Cancelar</button>
+  </form>
+</div>
